@@ -33,9 +33,11 @@ Dataset contains GPS position data for public transport vehicles in Wrocław, Po
 
 2. Type of vehicles comparison: Compare the type of vehicles used in the public transport systems of Nuremberg and Wrocław, including buses, trams, and trains. [i2]
 
-3. Connectivity analysis: Analyze the connectivity of the public transport systems in Nuremberg and Wrocław, including the number of transfers required to reach a destination and the travel time between different locations.
+3. Connectivity analysis: Analyze the connectivity of the public transport systems in Nuremberg and Wrocław, including the number of transfers required to reach a destination and the travel time between different locations. [i3]
  
-4. Insights and recommendations: Provide insights and recommendations on which city has a better public transport system and how each system can be improved based on the analysis and comparison.
+4. Insights and recommendations: Provide insights and recommendations on which city has a better public transport system and how each system can be improved based on the analysis and comparison. [i4]
 
-[i1] : https://github.com/mujeeb-netizen/AMSE/issues/1
-[i2] : 
+[i1] : https://github.com/mujeeb-netizen/2023-amse-template/issues/1
+[i2] : https://github.com/mujeeb-netizen/2023-amse-template/issues/2
+[i3] : https://github.com/mujeeb-netizen/2023-amse-template/issues/3
+[i4] : https://github.com/mujeeb-netizen/2023-amse-template/issues/4
