@@ -15,7 +15,8 @@ from sqlalchemy import create_engine
 
 #==========Fetching data==========#
 print("Fetching wroclaw transport data....")
-wroclawDataFrame = pd.read_csv(r"C:\Users\mujeeb\Downloads\archive (1)\positions.csv",usecols=[0, 3,4,5]) #download data from here: https://drive.google.com/file/d/1Dvi5y254IvaPujrixbIwZehmeHh2Ncu0/view?usp=sharing
+#download data from here: https://drive.google.com/file/d/1Dvi5y254IvaPujrixbIwZehmeHh2Ncu0/view?usp=sharing
+wroclawDataFrame = pd.read_csv(r"C:\\Users\\mujeeb\\Downloads\\archive (1)\\positions.csv",usecols=[0, 3,4,5]) 
 print("Fetching wroclaw transport data [done]....")
 print("Fetching nuremberg transport data....")
 nurembergDataFrame = pd.read_excel('https://opendata.vag.de/dataset/08eb49f9-0f6c-4b76-96fd-5f8e3a0ac593/resource/c66d5b67-6a01-4190-a9cf-1de6359d07ae/download/20170601_haltestellen_id_geo.xlsx',
@@ -37,14 +38,14 @@ print("Cleaning data and removing missing values [done]....")
 print("Creating SQLite files....")
 createDb = create_engine("sqlite:///wroclaw_nuremberg_public_transport.db")
 print("DB created...")
-print("creating wroclaw data table ...")
+print("creating wroclaw data table, it will take few minutes ...")
 wroclawDataFrame.to_sql("wroclaw_data", createDb, if_exists="replace")
 print("creating wroclaw data table [done]...")
 print("creating nuremberg data table...")
 nurembergDataFrame.to_sql("nuremberg_data", createDb, if_exists="replace")
 print("creating nuremberg data table [done]...")
 print("SQLite files created successfully!")
-
+input("Press Enter to continue...")
 
 # In[ ]:
 
