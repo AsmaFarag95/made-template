@@ -1,11 +1,13 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[2]:
+# In[33]:
 
 
 import pandas as pd
 from sqlalchemy import create_engine
+import plotly.express as px
+import plotly.express as px2
 #====Selecting only relevent cols===========#
 # Haltepunkt
 # latitude
@@ -17,6 +19,10 @@ from sqlalchemy import create_engine
 print("Fetching wroclaw transport data....")
 #download data from here: https://drive.google.com/file/d/1Dvi5y254IvaPujrixbIwZehmeHh2Ncu0/view?usp=sharing
 wroclawDataFrame = pd.read_csv(r"C:\\Users\\mujeeb\\Downloads\\archive (1)\\positions.csv",usecols=[0, 3,4,5]) 
+
+wroclawDataFrame= wroclawDataFrame[~(wroclawDataFrame["x"] > 90)]
+wroclawDataFrame= wroclawDataFrame[~(wroclawDataFrame["y"] > 180)]
+
 print("Fetching wroclaw transport data [done]....")
 print("Fetching nuremberg transport data....")
 nurembergDataFrame = pd.read_excel('https://opendata.vag.de/dataset/08eb49f9-0f6c-4b76-96fd-5f8e3a0ac593/resource/c66d5b67-6a01-4190-a9cf-1de6359d07ae/download/20170601_haltestellen_id_geo.xlsx',
@@ -27,25 +33,73 @@ print("Fetching nuremberg transport data [done]....")
 
 #==========Makeing Data and columns consistent for both datasets==========#
 print("Cleaning data and removing missing values....")
-wroclawDataFrame.columns=["Haltepunkt","Betriebszweig","latitude","latitude"] 
+
+# nurembergDataFrame.columns=["Haltepunkt","Betriebszweig","latitude","longitude"]
+# nurembergDataFrame['Status'] = 'Unique'
+# nurembergDataFrame.loc[nurembergDataFrame[nurembergDataFrame.loc[:, ['latitude', 'longitude']].round(4).duplicated(keep=False)].index, 'Status'] = 'PD'
+# nurembergDataFrame.drop(index=nurembergDataFrame[nurembergDataFrame['Status'] == 'PD'].index, inplace=True)
+
+
+wroclawDataFrame.columns=["Haltepunkt","Betriebszweig","latitude","longitude"] 
+
+# wroclawDataFrame['Status'] = 'Unique'
+# wroclawDataFrame.loc[wroclawDataFrame[wroclawDataFrame.loc[:, ['latitude', 'longitude']].round(4).duplicated(keep=False)].index, 'Status'] = 'PD'
+# wroclawDataFrame.drop(index=wroclawDataFrame[wroclawDataFrame['Status'] == 'PD'].index, inplace=True)
+
 wroclawDataFrame = wroclawDataFrame.replace(['tram'], 'T')
 wroclawDataFrame = wroclawDataFrame.replace(['bus'], 'B')
 wroclawDataFrame.dropna() #removing missing values if data has any missing values
 nurembergDataFrame.dropna() #removing missing values if data has any missing values
 print("Cleaning data and removing missing values [done]....")
-
-#================Creating db files=======================================
+print(wroclawDataFrame)
+# #================Creating db files=======================================
 print("Creating SQLite files....")
-createDb = create_engine("sqlite:///wroclaw_nuremberg_public_transport.db")
-print("DB created...")
 print("creating wroclaw data table, it will take few minutes ...")
-wroclawDataFrame.to_sql("wroclaw_data", createDb, if_exists="replace")
+wroclawDataFrame.to_sql("wroclaw_data", 'sqlite:///wroclaw_nuremberg_public_transport.sqlite',if_exists='replace', index=False)
 print("creating wroclaw data table [done]...")
 print("creating nuremberg data table...")
-nurembergDataFrame.to_sql("nuremberg_data", createDb, if_exists="replace")
+nurembergDataFrame.to_sql("nuremberg_data", 'sqlite:///wroclaw_nuremberg_public_transport.sqlite',if_exists='replace', index=False)
 print("creating nuremberg data table [done]...")
 print("SQLite files created successfully!")
-input("Press Enter to continue...")
+
+color_scale = [(0, 'purple'), (1,'green')]
+
+fig = px.scatter_mapbox(nurembergDataFrame, 
+                        lat="latitude", 
+                        lon="longitude", 
+                        hover_name="Betriebszweig", 
+                        hover_data=["Betriebszweig"],
+                        color="Betriebszweig",
+                        color_continuous_scale=color_scale,
+                        
+                        zoom=9, 
+                        height=500,
+                        width=500)
+
+fig.update_layout(mapbox_style="open-street-map")
+fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+fig.show()
+
+
+
+color_scale = [(0, 'purple'), (1,'green')]
+
+fig2 = px2.scatter_mapbox(wroclawDataFrame.head(1000), 
+                        lat="latitude", 
+                        lon="longitude", 
+                        hover_name="Betriebszweig", 
+                        hover_data=["Betriebszweig"],
+                        color="Betriebszweig",
+                        color_continuous_scale=color_scale,
+                        
+                        zoom=9, 
+                        height=500,
+                        width=500)
+
+fig2.update_layout(mapbox_style="open-street-map")
+fig2.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+fig2.show()
+
 
 # In[ ]:
 
