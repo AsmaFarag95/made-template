@@ -33,8 +33,8 @@ pipeline airportDataPipeline{
     //generating sqlite file from table, enter table and filename while running the script using runtime parameters (AIRPORT_DATA_TABLE_FILENAME , AIRPORT_DATA_SQLITE_FILENAME)
 
     block airportDataSQLiteInterpreter oftype SQLiteLoader {
-		 table: requires AIRPORT_DATA_TABLE_FILENAME;
-         file: requires AIRPORT_DATA_SQLITE_FILENAME;
+		 table: "airports";
+         file: "airports.sqlite";
 	}
     
     //pipes
@@ -54,5 +54,4 @@ pipeline airportDataPipeline{
         from: airportDataTableInterpreter;
         to: airportDataSQLiteInterpreter;
     }
-
 }
