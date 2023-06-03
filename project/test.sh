@@ -27,15 +27,9 @@ then
    else
      pip install openpyxl
    fi
-
-   python pipeline.py
-
-   if [ ! -f /data/wroclaw_nuremberg_public_transport.sqlite ]
-   then
-      echo "Failed"
-   else
-      echo "script is running great, SQLite files found!"
-   fi
+cd ..
+python init.py
+python -m unittest discover
 else
    echo "please install python"
 fi
