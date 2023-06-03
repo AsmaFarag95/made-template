@@ -25,7 +25,7 @@ def pipeline():
         print("Fetching wroclaw transport data [done]....")
         print("Fetching nuremberg transport data....")
         nurembergDataFrame = pd.read_excel('https://opendata.vag.de/dataset/08eb49f9-0f6c-4b76-96fd-5f8e3a0ac593/resource/c66d5b67-6a01-4190-a9cf-1de6359d07ae/download/20170601_haltestellen_id_geo.xlsx',
-        usecols='C,F,G,H')
+        usecols='C,H,G,F')
         print("Fetching nuremberg transport data [done]....")
 
 
@@ -33,17 +33,14 @@ def pipeline():
         #==========Makeing Data and columns consistent for both datasets==========#
         print("Cleaning data and removing missing values....")
 
-        # nurembergDataFrame.columns=["Haltepunkt","Betriebszweig","latitude","longitude"]
-        # nurembergDataFrame['Status'] = 'Unique'
-        # nurembergDataFrame.loc[nurembergDataFrame[nurembergDataFrame.loc[:, ['latitude', 'longitude']].round(4).duplicated(keep=False)].index, 'Status'] = 'PD'
-        # nurembergDataFrame.drop(index=nurembergDataFrame[nurembergDataFrame['Status'] == 'PD'].index, inplace=True)
+
 
 
         wroclawDataFrame.columns=["Haltepunkt","Betriebszweig","latitude","longitude"] 
 
-        # wroclawDataFrame['Status'] = 'Unique'
-        # wroclawDataFrame.loc[wroclawDataFrame[wroclawDataFrame.loc[:, ['latitude', 'longitude']].round(4).duplicated(keep=False)].index, 'Status'] = 'PD'
-        # wroclawDataFrame.drop(index=wroclawDataFrame[wroclawDataFrame['Status'] == 'PD'].index, inplace=True)
+        wroclawDataFrame['Status'] = 'Unique'
+        wroclawDataFrame.loc[wroclawDataFrame[wroclawDataFrame.loc[:, ['latitude', 'longitude']].round(3).duplicated(keep=False)].index, 'Status'] = 'PD'
+        wroclawDataFrame.drop(index=wroclawDataFrame[wroclawDataFrame['Status'] == 'PD'].index, inplace=True)
 
         wroclawDataFrame = wroclawDataFrame.replace(['tram'], 'T')
         wroclawDataFrame = wroclawDataFrame.replace(['bus'], 'B')
