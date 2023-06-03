@@ -27,8 +27,11 @@ then
    else
      pip install openpyxl
    fi
-cd ..
+
+cd data
 python init.py
+cd ..
+cd ..
 python -m unittest discover
 else
    echo "please install python"
