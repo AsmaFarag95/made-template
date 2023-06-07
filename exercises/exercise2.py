@@ -2,6 +2,19 @@ import pandas as pd
 from sqlalchemy import create_engine
 
 
+types = {
+            "EVA_NR": int,
+            "DS100": str,
+            "IFOPT": str,
+            "NAME": str,
+            "Verkehr": str,
+            "Laenge": float,
+            "Breite": float,
+            "Betreiber_Name": str,
+            "Betreiber_Nr": int
+        }
+
+
 def getDataFromLink(link):
     dataFrame = pd.read_csv(link, delimiter=";")
     return dataFrame
@@ -12,7 +25,11 @@ def createSQLiteFile(df):
     df.to_sql("trainstops", 'sqlite:///trainstops.sqlite',if_exists='replace', index=False)
     
     
-
+def changeDataType(df,types):
+    df = df.astype(types)
+    return df
+    
+    
     
 def cleanData(data):
     data.drop(columns=["Status"], inplace=True)
@@ -29,13 +46,11 @@ def cleanData(data):
     print(type(data['IFOPT']))
     data = data[data['IFOPT'].str.contains(r'^[a-zA-Z]{2}:[0-9]*:[0-9]+(:[0-9]+)?$')]
     data.IFOPT = data.IFOPT.astype(str)
-    data.Laenge = data.Laenge.astype(float)
-    data.Breite = data.Breite.astype(float)
-#     data["IFOPT"] = pd.to_string(data["IFOPT"])
     return data
     
 
 link = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
 df = getDataFromLink(link)
 df = cleanData(df)
+df = changeDataType(df,types)
 createSQLiteFile(df)
