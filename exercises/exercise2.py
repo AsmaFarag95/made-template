@@ -29,6 +29,8 @@ def cleanData(data):
     print(type(data['IFOPT']))
     data = data[data['IFOPT'].str.contains(r'^[a-zA-Z]{2}:[0-9]*:[0-9]+(:[0-9]+)?$')]
     data.IFOPT = data.IFOPT.astype(str)
+    data.Laenge = data.Laenge.astype(float)
+    data.Breite = data.Breite.astype(float)
 #     data["IFOPT"] = pd.to_string(data["IFOPT"])
     return data
     
