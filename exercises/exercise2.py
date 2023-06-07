@@ -20,6 +20,8 @@ def cleanData(data):
     data['Breite'] = data['Breite'].str.replace(',','.')
     data["Laenge"] = pd.to_numeric(data["Laenge"])
     data["Breite"] = pd.to_numeric(data["Breite"])
+    data["EVA_NR"] = pd.to_numeric(data["EVA_NR"])
+    data["Betreiber_Nr"] = pd.to_numeric(data["Betreiber_Nr"])
     data= data[~(data["Laenge"] < 90) & data["Laenge"] > -90]
     data= data[~(data["Breite"] < 90) & data["Breite"] > -90]
     data = data.dropna()
