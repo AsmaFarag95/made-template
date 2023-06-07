@@ -1,4 +1,5 @@
 import pandas as pd
+from sqlalchemy import create_engine
 
 
 def getDataFromLink(link):
@@ -25,7 +26,10 @@ def cleanData(data):
     data= data[~(data["Laenge"] < 90) & data["Laenge"] > -90]
     data= data[~(data["Breite"] < 90) & data["Breite"] > -90]
     data = data.dropna()
+    print(type(data['IFOPT']))
     data = data[data['IFOPT'].str.contains(r'^[a-zA-Z]{2}:[0-9]*:[0-9]+(:[0-9]+)?$')]
+    data.IFOPT = data.IFOPT.astype(str)
+#     data["IFOPT"] = pd.to_string(data["IFOPT"])
     return data
     
 
