@@ -2,7 +2,7 @@ import sys
 import unittest
 import pathlib as pl
 import pandas as pd
-
+import os
 
 def pipeline():
         print("Fetching wroclaw transport data....")
@@ -54,8 +54,9 @@ def pipeline():
 pipeline()
 class TestCase(unittest.TestCase):
     def test_SQLiteFileExists(self):
-        filepath = pl.Path("project/data/wroclaw_nuremberg_public_transport.sqlite")
-        self.assertEquals((str(filepath), filepath.is_file()), (str(filepath), True))
+        directory_path = os.getcwd()
+        assert os.path.exists(os.path.dirname(directory_path)+"\project\data\wroclaw_nuremberg_public_transport.sqlite")
+         
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
