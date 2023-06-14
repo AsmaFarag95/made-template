@@ -51,7 +51,7 @@ def pipeline():
 
         # # In[ ]:
 
-pipeline()
+
 class TestCase(unittest.TestCase):
     def test_SQLiteFileExists(self):
         filepath = pl.Path("project/data/wroclaw_nuremberg_public_transport.sqlite")
@@ -60,4 +60,5 @@ class TestCase(unittest.TestCase):
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         TestCase.URL = sys.argv.pop()
+    pipeline()    
     unittest.main()
