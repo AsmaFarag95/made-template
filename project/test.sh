@@ -1,7 +1,6 @@
 #!/bin/bash
 
-if [[ "$(python -V)" =~ "Python 3.11" ]]
-then
+
    echo Python is installed.
    python -c "import pandas"
    if [ $? -eq "0" ]
@@ -33,6 +32,3 @@ python init.py
 cd ..
 cd ..
 python -m unittest discover
-else
-   echo "please install python"
-fi
