@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ "$(python -V)" =~ "Python 3" ]]
+if [[ "$(python -V)" =~ "Python 3.11" ]]
 then
    echo Python is installed.
    python -c "import pandas"
