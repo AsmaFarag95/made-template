@@ -1,7 +1,7 @@
 import sys
 import unittest
 import pathlib as pl
-from pipeline import pipeline
+from ../project/data/pipeline import pipeline
 
 pipeline()
 
