@@ -51,7 +51,7 @@ def pipeline():
 
         # # In[ ]:
 
-pipeline()
+
 class TestCase(unittest.TestCase):
     def test_SQLiteFileExists(self):
         directory_path = os.getcwd()
@@ -60,6 +60,5 @@ class TestCase(unittest.TestCase):
 
 if __name__ == "__main__":
     if len(sys.argv) > 1:
-        TestCase.URL = sys.argv.pop()
-        
+        TestCase.URL = sys.argv.pop()  
     unittest.main()
