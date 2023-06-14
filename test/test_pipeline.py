@@ -3,7 +3,7 @@ import unittest
 import pathlib as pl
 import pandas as pd
 
-
+pipeline()
 def pipeline():
         print("Fetching wroclaw transport data....")
         #download data from here: https://drive.google.com/file/d/1Dvi5y254IvaPujrixbIwZehmeHh2Ncu0/view?usp=sharing
@@ -60,5 +60,5 @@ class TestCase(unittest.TestCase):
 if __name__ == "__main__":
     if len(sys.argv) > 1:
         TestCase.URL = sys.argv.pop()
-    pipeline()    
+        
     unittest.main()
