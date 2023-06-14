@@ -3,7 +3,7 @@ import unittest
 import pathlib as pl
 import pandas as pd
 
-pipeline()
+
 def pipeline():
         print("Fetching wroclaw transport data....")
         #download data from here: https://drive.google.com/file/d/1Dvi5y254IvaPujrixbIwZehmeHh2Ncu0/view?usp=sharing
@@ -51,7 +51,7 @@ def pipeline():
 
         # # In[ ]:
 
-
+pipeline()
 class TestCase(unittest.TestCase):
     def test_SQLiteFileExists(self):
         filepath = pl.Path("project/data/wroclaw_nuremberg_public_transport.sqlite")
