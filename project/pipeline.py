@@ -58,7 +58,7 @@ def pipeline():
         print("creating nuremberg data table [done]...")
         print("SQLite files created successfully!")
 
-
+pipeline()
 
         # # In[ ]:
 
