@@ -2,6 +2,7 @@ import sys
 import unittest
 import pathlib as pl
 import pandas as pd
+import os
 
 
 class TestCase(unittest.TestCase):
