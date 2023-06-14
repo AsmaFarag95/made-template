@@ -27,8 +27,5 @@
      pip install openpyxl
    fi
 
-cd data
-python init.py
-cd ..
-cd ..
+
 python -m unittest discover

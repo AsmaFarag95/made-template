@@ -1,6 +1,9 @@
 import sys
 import unittest
 import pathlib as pl
+import pipeline from ../project/data/pipeline
+
+pipeline()
 
 class TestCase(unittest.TestCase):
     def test_SQLiteFileExists(self):
