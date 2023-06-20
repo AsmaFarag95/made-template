@@ -27,5 +27,5 @@
      pip install openpyxl
    fi
 
-python pipeline.py
+
 python -m unittest discover
