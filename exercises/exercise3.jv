@@ -46,7 +46,7 @@ encoding: "Windows-1252";
 	}
    
     constraint maxminFive oftype RegexConstraint {
-  regex: /^0?\w{4}$/;
+  regex: /^.{5}$/;
   }
     
     valuetype CINLength oftype text {
