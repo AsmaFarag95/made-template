@@ -1,0 +1,82 @@
+pipeline gtfsE5DataPipeline{
+     
+    //getting file from url
+    block gtfsE5DataExtractor oftype HttpExtractor{	
+        url: "https://gtfs.rhoenenergie-bus.de/GTFS.zip";
+    }	
+        block  gtfsE5Unzipping oftype ArchiveInterpreter {
+	archiveType: "zip";
+	}
+    	block gtfsE5PickFile oftype FilePicker {
+	path: "/stops.txt";
+	}
+    	block gtfsE5InterpretingTextFile oftype TextFileInterpreter {
+	}
+    //converting file to textfile
+	block gtfsE5CSV oftype CSVInterpreter {
+    enclosing:'"';
+     enclosingEscape: '"';
+	}
+    //covnerting textfile to csv
+	block gtfsE5TableConverter oftype TableInterpreter {
+	header: true;
+	columns: [
+		"stop_id" oftype integer,
+		"stop_name" oftype text,
+		"stop_lat" oftype latLonConst ,
+		"stop_lon" oftype latLonConst,
+		"zone_id" oftype yearConst,
+	];
+	}
+
+	block gtfsE5LoSQLiteConverter oftype SQLiteLoader {
+	table: "stops";
+	file: "gtfs.sqlite";
+
+	}
+ valuetype latLonConst oftype decimal {
+	constraints: [latLon];
+    }
+
+	constraint latLon oftype RangeConstraint {
+    lowerBound:-90;
+    upperBound: 90;
+    }
+
+	valuetype yearConst oftype integer {
+	constraints: [yearFilter];
+	}
+
+	constraint yearFilter oftype RangeConstraint{
+	lowerBound: 2001;
+    upperBound: 2001;
+	}
+   
+    //pipes
+    pipe {
+        from: gtfsE5DataExtractor;
+        to: gtfsE5Unzipping;
+    }
+        pipe {
+        from: gtfsE5Unzipping;
+        to: gtfsE5PickFile;
+    }
+    pipe {
+        from: gtfsE5PickFile;
+        to: gtfsE5InterpretingTextFile;
+    }
+        pipe {
+        from: gtfsE5InterpretingTextFile;
+        to: gtfsE5CSV;
+    }
+      pipe {
+        from: gtfsE5CSV;
+        to: gtfsE5TableConverter;
+    }
+    pipe {
+        from: gtfsE5TableConverter;
+        to: gtfsE5LoSQLiteConverter;
+    }
+ 
+  
+}
