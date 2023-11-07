@@ -1,35 +1,49 @@
 # Project Plan
 
 ## Title
-<!-- Give your project a short title. -->
-Awesome MADE project.
+
+Bicycle Traffic and Weather.
 
 ## Main Question
 
-<!-- Think about one main question you want to answer based on the data. -->
-1. Does writing an example question help students write better project plans?
-
+Is the bicycle traffic also affects the weather?
 ## Description
 
-<!-- Describe your data science project in max. 200 words. Consider writing about why and how you attempt it. -->
-XY is an important problem, because... This projects analyzes XY, using method A. The results can give insights into...
+
+Understanding and optimizing bicycle traffic in Münster, which is an important issue due to the city's commitment to sustainable mobility and cycling infrastructure. This project aims to analyze the extensive bicycle count data, combined with local weather information, obtained from various counting points in Münster over the past years.
 
 ## Datasources
 
-<!-- Describe each datasources you plan to use in a section. Use the prefic "DatasourceX" where X is the id of the datasource. -->
+There are several bicycle counting points in the Münster city area. The Office for Mobility and Civil Engineering provides the number of cyclists counted daily at the bicycle counting stations as well as the weather information recorded in each case collected in Excel files. 
 
-### Datasource1: ExampleSource
+This dataset contains the detailed bicycle count data from the last few years, both on a daily and hourly basis for the selected district. 
+
+The data sets also contain local weather information for the respective time, but it is obtained from: World Weather Online provided by Eco Counter GmbH.
+
+
+
+### Datasource1: 
+
+ Bicycle traffic count: data from the counting points in the Münster castle district
 * Metadata URL: https://mobilithek.info/offers/-6901989592576801458
-* Data URL: https://raw.githubusercontent.com/od-ms/radverkehr-zaehlstellen/main/100035541/2019-01.csv
-* Data Type: CSV
+* Data URL: https://mobilithek.info/offers/-5664437831555154589
+* Data Type: XLS, XLSX
 
-Short description of the DataSource.
+
+
+ 
 
 ## Work Packages
 
-<!-- List of work packages ordered sequentially, each pointing to an issue with more details. -->
+1. Preprocessing: Clean, format, and prepare the dataset for analysis. This includes handling missing values, ensuring data consistency, and structuring the data for further investigation.
 
-1. Example Issue [#1][i1]
-2. ...
+2.  Integration: Develop a data integration plan to combine motor vehicle and bicycle datasets into a unified dataset.
 
-[i1]: https://github.com/jvalue/made-template/issues/1
+3. Exploring:  gain insights into the dataset, including visualization of bicycle traffic patterns, trends, and descriptive statistics. Examine the relationships between weather variables and cycling counts. perform statistical modeling.
+
+4. Analysis: Using Machine Learnin, Time-series analysis and other analysis techniques to provide parking and infrastructure recommendations for policymakers and infrastructure planners to improve bicycle mobility in Münster.
+Report and Documentation:
+
+6. Reporting: summarizing findings and insights from the analyses.
+Document the data sources, methodologies, and results.
+
