@@ -6,7 +6,7 @@ Bicycle Traffic and Weather.
 
 ## Main Question
 
-Is the bicycle traffic also affects the weather?
+How the bicycle traffic is related to the weather?
 ## Description
 
 
