@@ -2,48 +2,52 @@
 
 ## Title
 
-Bicycle Traffic and Weather.
+Münster: Energy and greenhouse gas balance 1990 – 2021
 
 ## Main Question
 
-How the bicycle traffic is related to the weather?
+"How can Münster enhance its sustainable urban development strategies, focusing on reducing CO2 emissions and reinforcing renewable energy production?"
+
 ## Description
 
 
-Understanding and optimizing bicycle traffic in Münster, which is an important issue due to the city's commitment to sustainable mobility and cycling infrastructure. This project aims to analyze the extensive bicycle count data, combined with local weather information, obtained from various counting points in Münster over the past years.
+The project aims to investigate and provide insights for sustainable urban development in Münster, Germany. The analysis will focus on two key aspects: the development of annual CO2 emissions and the status of renewable electricity and heat production. The primary goal is to explore how promoting cleaner energy sources benefits the environment.
 
 ## Datasources
 
-There are several bicycle counting points in the Münster city area. The Office for Mobility and Civil Engineering provides the number of cyclists counted daily at the bicycle counting stations as well as the weather information recorded in each case collected in Excel files. 
-
-This dataset contains the detailed bicycle count data from the last few years, both on a daily and hourly basis for the selected district. 
-
-The data sets also contain local weather information for the respective time, but it is obtained from: World Weather Online provided by Eco Counter GmbH.
-
-
-
 ### Datasource1: 
 
- Bicycle traffic count: data from the counting points in the Münster castle district
-* Metadata URL: https://mobilithek.info/offers/-6901989592576801458
-* Data URL: https://mobilithek.info/offers/-5664437831555154589
-* Data Type: XLS, XLSX
+*Development of annual CO2 emissions in Münster
+* Metadata URL: [https://mobilithek.info/offers/-6901989592576801458](https://opendata.stadt-muenster.de/dataset/entwicklung-der-j%C3%A4hrlichen-co2-emissionen-m%C3%BCnster/resource/5e79c3bd-69c3-4ea9-893d#{view-graph:{graphOptions:{hooks:{processOffset:{},bindEvents:{}}}},graphOptions:{hooks:{processOffset:{},bindEvents:{}}}})
+* Data URL: [https://mobilithek.info/offers/-5664437831555154589](https://opendata.stadt-muenster.de/dataset/entwicklung-der-j%C3%A4hrlichen-co2-emissionen-m%C3%BCnster)
+* Data Type: XLS
 
+This dataset contains insights about the CO2 emissions (final energy consumption) of the city of Münster in the years 1990-2021.
+It is divided into three sheets based on the sector (private households, industry, transport, commercial + other), application (heat, electricity, transport)
+or by energy source (natural gas, district heating, heating oil, coal, fuel mix, transport, electricity, other).
+  
+### Datasource2: 
 
+*Renewable electricity and heat production in the city of Münster
+* Metadata URL: https://opendata.stadt-muenster.de/dataset/erneuerbare-strom-und-w%C3%A4rmeproduktion-der-stadt-m%C3%BCnster/resource/1dfe1a0c-ad3f-44ea-a4bd#{view-graph:{graphOptions:{hooks:{processOffset:{},bindEvents:{}}}},graphOptions:{hooks:{processOffset:{},bindEvents:{}}}}
+* Data URL: https://opendata.stadt-muenster.de/dataset/erneuerbare-strom-und-w%C3%A4rmeproduktion-der-stadt-m%C3%BCnster
+* Data Type: XLS
 
- 
+This dataset contains the data on the production of electricity and heat through renewable energies for the same time period.
+
 
 ## Work Packages
 
 1. Preprocessing: Clean, format, and prepare the dataset for analysis. This includes handling missing values, ensuring data consistency, and structuring the data for further investigation.
 
-2.  Integration: Develop a data integration plan to combine motor vehicle and bicycle datasets into a unified dataset.
+2. Integration: Develop a data integration plan to combine the renewable energy production dataset and CO2 emissions development in Münster.  
 
-3. Exploring:  gain insights into the dataset, including visualization of bicycle traffic patterns, trends, and descriptive statistics. Examine the relationships between weather variables and cycling counts. perform statistical modeling.
+3. Exploring:  Gain insights into the datasets to understand trends and patterns. Examine the relationships between renewable energy production dataset and CO2 emissions development.
 
-4. Analysis: Using Machine Learnin, Time-series analysis and other analysis techniques to provide parking and infrastructure recommendations for policymakers and infrastructure planners to improve bicycle mobility in Münster.
-Report and Documentation:
+4. Analysis: Using Machine Learnin, Time-series analysis and other analysis techniques for in-depth insights.
+   
+5. Generate insights: Provide recommendations for policymakers and energy planners based on the analysis.
 
-6. Reporting: summarizing findings and insights from the analyses.
+6. Reporting: summarizing findings and insights from the analyses. Present results in a clear and accessible format.
 Document the data sources, methodologies, and results.
 
