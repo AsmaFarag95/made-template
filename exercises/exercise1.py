@@ -10,23 +10,24 @@ df = pd.read_csv(source_url, delimiter=";")
  
 # Define SQLite data types for each column
 sqlite_data_types = {
-    "column_1": types.INTEGER,
-    "column_2": types.TEXT,
-    "column_3": types.TEXT,
-    "column_4": types.TEXT,
-    "column_5": types.TEXT,
-    "column_6": types.TEXT,
-    "column_7": types.FLOAT,
-    "column_8": types.FLOAT,
-    "column_9": types.INTEGER,
-    "column_10": types.FLOAT,
-    "column_11": types.TEXT,
-    "column_12": types.TEXT,
-    "geo_punkt": types.TEXT,
+    "column_1": "INTEGER",
+    "column_2": "TEXT",
+    "column_3": "TEXT",
+    "column_4": "TEXT",
+    "column_5": "TEXT",
+    "column_6": "TEXT",
+    "column_7": "REAL",
+    "column_8": "REAL",
+    "column_9": "INTEGER",
+    "column_10": "REAL",
+    "column_11": "TEXT",
+    "column_12": "TEXT",
+    "geo_punkt": "TEXT",
 }
 
+
 # Create the SQLite table
-df.to_sql("airports", "sqlite:///airports.sqlite" , if_exists="replace", index=False)
+df.to_sql("airports", "sqlite:///airports.sqlite" , if_exists="replace", index=False , dtype = sqlite_data_types)
 
 # Confirm the successful creation of the table
 print("Table 'airports' created successfully.")
