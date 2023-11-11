@@ -1,4 +1,4 @@
-import pandas 
+import pandas as pd
  
 # Source URL
 source_url =   "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/rhein-kreis-neuss-flughafen-weltweit/exports/csv"
