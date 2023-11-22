@@ -38,16 +38,19 @@ This dataset contains the data on the production of electricity and heat through
 
 ## Work Packages
 
-1. Preprocessing: Clean, format, and prepare the dataset for analysis. This includes handling missing values, ensuring data consistency, and structuring the data for further investigation.
+1. Preprocessing: Clean, format, and prepare the dataset for analysis. This includes handling missing values, ensuring data consistency, and structuring the data for further investigation. [i1]
 
-2. Integration: Develop a data integration plan to combine the renewable energy production dataset and CO2 emissions development in Münster.  
+2. Integration: Develop a data integration plan to combine the renewable energy production dataset and CO2 emissions development in Münster. [i2]
 
-3. Exploring:  Gain insights into the datasets to understand trends and patterns. Examine the relationships between renewable energy production dataset and CO2 emissions development.
+3. Exploring:  Gain insights into the datasets to understand trends and patterns. Examine the relationships between renewable energy production dataset and CO2 emissions development. [i3]
 
-4. Analysis: Using Machine Learnin, Time-series analysis and other analysis techniques for in-depth insights.
+4. Analysis: Using Machine Learnin, Time-series analysis and other analysis techniques for in-depth insights. [i4]
    
-5. Generate insights: Provide recommendations for policymakers and energy planners based on the analysis.
+5. Generate insights: Provide recommendations for policymakers and energy planners based on the analysis. [i5]
 
 6. Reporting: summarizing findings and insights from the analyses. Present results in a clear and accessible format.
-Document the data sources, methodologies, and results.
+Document the data sources, methodologies, and results. [i6]
 
+[i1] : [#1](https://github.com/AsmaFarag95/made-template/issues/1)
+
+[i1] : #1 [i2] : #2 [i3] : #3 [i4] : #4
