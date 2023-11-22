@@ -48,9 +48,10 @@ This dataset contains the data on the production of electricity and heat through
    
 5. Generate insights: Provide recommendations for policymakers and energy planners based on the analysis. [i5]
 
-6. Reporting: summarizing findings and insights from the analyses. Present results in a clear and accessible format.
-Document the data sources, methodologies, and results. [i6]
+6. Reporting: summarizing findings and insights from the analyses. Present results in a clear and accessible format. Document the data sources, methodologies, and results. [i5]
 
 [i1] : [#1](https://github.com/AsmaFarag95/made-template/issues/1)
-
-[i1] : #1 [i2] : #2 [i3] : #3 [i4] : #4
+[i2] : [#2](https://github.com/AsmaFarag95/made-template/issues/2)
+[i3] : [#3](https://github.com/AsmaFarag95/made-template/issues/3)
+[i4] : [#4](https://github.com/AsmaFarag95/made-template/issues/4)
+[i5] : [#5](https://github.com/AsmaFarag95/made-template/issues/5)
