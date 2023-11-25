@@ -3,6 +3,7 @@ Exercise 2
 Build an automated data pipeline for the following source:
 direct link to CSV: https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV
 
+
 Goal:
 
 Write data into a SQLite database called “trainstops.sqlite”, in the table “trainstops”
@@ -25,6 +26,7 @@ from sqlalchemy import create_engine
 
 # Define the CSV link
 csv_link = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
+ 
 
 # Define SQLite database and table names
 SQLdb_name = "trainstops.sqlite"
