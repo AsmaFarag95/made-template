@@ -1,26 +1,3 @@
-'''
-Exercise 2
-Build an automated data pipeline for the following source:
-direct link to CSV: https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV
-
-
-Goal:
-
-Write data into a SQLite database called “trainstops.sqlite”, in the table “trainstops”
-
-First, drop the "Status" column
-
-Then, drop all rows with invalid values:
-Valid "Verkehr" values are "FV", "RV", "nur DPN"
-Valid "Laenge", "Breite" values are geographic coordinate system values between and including -90 and 90
-Valid "IFOPT" values follow this pattern:
-<exactly two characters>:<any amount of numbers>:<any amount of numbers><optionally another colon followed by any amount of numbers>
-This is not the official IFOPT standard, please follow our guidelines and not the official standard
-Empty cells are considered invalid
-
-Use fitting SQLite types (e.g., BIGINT, TEXT or FLOAT) for all columns
- 
-'''
 import pandas as pd
 from sqlalchemy import create_engine
 
