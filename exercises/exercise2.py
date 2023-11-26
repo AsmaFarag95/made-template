@@ -31,8 +31,8 @@ def changeDataType(df,types):
 def cleanData(data):
     data.drop(columns=["Status"], inplace=True)
     data = data[data["Verkehr"].isin(["FV","RV","nur DPN"])]
-    data_frame.loc[:, 'Laenge'] = data_frame['Laenge'].str.replace(',', '.')
-    data_frame.loc[:, 'Breite'] = data_frame['Breite'].str.replace(',', '.')
+    data.loc[:, 'Laenge'] = data['Laenge'].str.replace(',', '.')
+    data.loc[:, 'Breite'] = data['Breite'].str.replace(',', '.')
 
 
     data = data.dropna()
