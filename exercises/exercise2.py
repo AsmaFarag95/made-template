@@ -33,8 +33,8 @@ def cleanData(data_frame):
     data_frame = data_frame.dropna()
     data_frame = changeDataType(data_frame, types)
 
-    data_frame = data_frame[~((data_frame["Laenge"] <= 90) & (data_frame["Laenge"] >= -90))]
-    data_frame = data_frame[~((data_frame["Breite"] <= 90) & (data_frame["Breite"] >= -90))]
+    data_frame = data_frame[~((data_frame["Laenge"] < 90) & (data_frame["Laenge"] > -90))]
+    data_frame = data_frame[~((data_frame["Breite"] < 90) & (data_frame["Breite"] > -90))]
 
     data_frame = data_frame[data_frame['IFOPT'].str.match(r'^[a-zA-Z]{2}:[0-9]*:[0-9]+(:[0-9]+)?$')]
     data_frame.IFOPT = data_frame.IFOPT.astype(str)
