@@ -30,8 +30,8 @@ def cleanData(data_frame):
     data_frame.drop(columns=["Status"], inplace=True)
     data_frame = data_frame[data_frame["Verkehr"].isin(["FV","RV","nur DPN"])]
 
-    data_frame.loc[:, 'Laenge'] = data_frame['Laenge'].str.replace(',', '.')
-    data_frame.loc[:, 'Breite'] = data_frame['Breite'].str.replace(',', '.')
+    data_frame['Laenge'] = data_frame['Laenge'].str.replace(',','.')
+    data_frame['Breite'] = data_frame['Breite'].str.replace(',','.')
 
 
     data_frame = data_frame.dropna()
