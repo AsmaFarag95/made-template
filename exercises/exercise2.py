@@ -16,33 +16,33 @@ def getDataFromLink(link):
     data_frame = pd.read_csv(link, delimiter=";")
     return data_frame
 
-def createSQLiteFile(data_frame):
-    data_frame.to_sql("trainstops", 'sqlite:///trainstops.sqlite',if_exists='replace', index=False)
+def createSQLiteFile(df):
+    df.to_sql("trainstops", 'sqlite:///trainstops.sqlite',if_exists='replace', index=False)
     
     
-def changeDataType(data_frame,types):
-    data_frame = data_frame.astype(types)
-    return data_frame
+def changeDataType(df,types):
+    df = data_frame.astype(types)
+    return df
     
     
     
-def cleanData(data_frame):
-    data_frame.drop(columns=["Status"], inplace=True)
-    data_frame = data_frame[data_frame["Verkehr"].isin(["FV","RV","nur DPN"])]
+def cleanData(df):
+    df.drop(columns=["Status"], inplace=True)
+    df = data_frame[df["Verkehr"].isin(["FV","RV","nur DPN"])]
 
-    data_frame['Laenge'] = data_frame['Laenge'].str.replace(',','.')
-    data_frame['Breite'] = data_frame['Breite'].str.replace(',','.')
+    df['Laenge'] = df['Laenge'].str.replace(',','.')
+    df['Breite'] = df['Breite'].str.replace(',','.')
 
 
-    data_frame = data_frame.dropna()
-    data_frame = changeDataType(data_frame, types)
+    df = df.dropna()
+    df = changeDataType(df, types)
 
-    data_frame = data_frame[~((data_frame["Laenge"] <= 90) & (data_frame["Laenge"] >= -90))]
-    data_frame = data_frame[~((data_frame["Breite"] <= 90) & (data_frame["Breite"] >= -90))]
+    df = df[~((df["Laenge"] <= 90) & (df["Laenge"] >= -90))]
+    df = df[~((df["Breite"] <= 90) & (df["Breite"] >= -90))]
 
-    data_frame = data_frame[data_frame['IFOPT'].str.contains(r'^[a-zA-Z]{2}:[0-9]*:[0-9]+(:[0-9]+)?$')]
-    data_frame.IFOPT = data_frame.IFOPT.astype(str)
-    return data_frame
+    df = df[df['IFOPT'].str.contains(r'^[a-zA-Z]{2}:[0-9]*:[0-9]+(:[0-9]+)?$')]
+    df.IFOPT = df.IFOPT.astype(str)
+    return df
 
     
 def init():
