@@ -1,56 +1,58 @@
 import pandas as pd
-from sqlalchemy import create_engine
+types = {
+            "EVA_NR": int,
+            "DS100": str,
+            "IFOPT": str,
+            "NAME": str,
+            "Verkehr": str,
+            "Laenge": float,
+            "Breite": float,
+            "Betreiber_Name": str,
+            "Betreiber_Nr": int
+        }
 
-# Define the CSV link
-csv_link = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
- 
 
-# Define SQLite database and table names
-SQLdb_name = "trainstops.sqlite"
-table_name = "trainstops"
+def getDataFromLink(link):
+    data_frame = pd.read_csv(link, delimiter=";")
+    return data_frame
+    
+    
+def changeDataType(data_frame,types):
+    data_frame = data_frame.astype(types)
+    return data_frame
+    
+    
+    
+def cleanData(data_frame):
+    data_frame.drop(columns=["Status"], inplace=True)
+    data_frame = data_frame[data_frame["Verkehr"].isin(["FV","RV","nur DPN"])]
 
-# Read the CSV into a pandas DataFrame
-df = pd.read_csv(csv_link, delimiter=";")
+    data_frame.loc[:, 'Laenge'] = data_frame['Laenge'].str.replace(',', '.')
+    data_frame.loc[:, 'Breite'] = data_frame['Breite'].str.replace(',', '.')
 
-# Drop the "Status" column
-df = df.drop("Status", axis=1) #last clm # (axis=1 Means we want to operate on clms).
+    data_frame = data_frame.dropna()
+    data_frame = changeDataType(data_frame, types)
 
-# Define a function to check and clean values
-def clean_values(value):
-    if pd.isnull(value):
-        return False
-    return True
+    data_frame = data_frame[~((data_frame["Laenge"] <= 90) & (data_frame["Laenge"] >= -90))]
+    data_frame = data_frame[~((data_frame["Breite"] <= 90) & (data_frame["Breite"] >= -90))]
 
-# Apply the clean_values function to each relevant column
-columns_to_clean = ["Verkehr", "Laenge", "Breite", "IFOPT"]
-for column in columns_to_clean:
-    df = df[df[column].apply(clean_values)]
+    data_frame = data_frame[data_frame['IFOPT'].str.match(r'^[a-zA-Z]{2}:[0-9]*:[0-9]+(:[0-9]+)?$')]
+    data_frame.IFOPT = data_frame.IFOPT.astype(str)
+    return data_frame
 
-# Filter rows based on "Verkehr" values
-valid_verkehr_values = ["FV", "RV", "nur DPN"]
-df = df[df["Verkehr"].isin(valid_verkehr_values)]
 
-# Filter rows based on "Laenge" and "Breite" values
-df = df[(df["Laenge"] >= -90) & (df["Laenge"] <= 90) & (df["Breite"] >= -90) & (df["Breite"] <= 90)]
+def createSQLiteFile(df):
+    df.to_sql("trainstops", 'sqlite:///trainstops.sqlite',if_exists='replace', index=False)
+    
+    
+def init():
+    csv_link = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
+ #call the methods:
+    data_frame = getDataFromLink(csv_link)
+    data_frame = cleanData(data_frame)
+    createSQLiteFile(data_frame)
 
-# Filter rows based on the IFOPT pattern
-#IFOPT, or Identifikationscode für ÖPNV-Teilnehmer (Identification of Fixed Objects in Public Transport), 
-ifo_pattern = r'^[a-zA-Z]{2}:\d+:\d+(:\d+)?$'
-df = df[df["IFOPT"].str.match(ifo_pattern)]
-
-# Define SQLite types for each column
-sqlite_types = {
-    "EVA_NR": "BIGINT",
-    "DS100": "TEXT",
-    "IFOPT": "TEXT",
-    "NAME": "TEXT",
-    "Verkehr": "TEXT",
-    "Laenge": "FLOAT",
-    "Breite": "FLOAT",
-    "Betreiber_Name": "TEXT",
-    "Betreiber_Nr": "TEXT",
-}
-
-# Create an SQLite engine and write the DataFrame to the database
-engine = create_engine(f"sqlite:///{SQLdb_name}")
-df.to_sql(table_name, engine, index=False, if_exists="replace", dtype=sqlite_types)
+    
+    
+if __name__ == "__main__":
+    init()  
