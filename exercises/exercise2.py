@@ -15,6 +15,9 @@ types = {
 def getDataFromLink(link):
     data_frame = pd.read_csv(link, delimiter=";")
     return data_frame
+
+def createSQLiteFile(data_frame):
+    data_frame.to_sql("trainstops", 'sqlite:///trainstops.sqlite',if_exists='replace', index=False)
     
     
 def changeDataType(data_frame,types):
@@ -41,10 +44,6 @@ def cleanData(data_frame):
     data_frame.IFOPT = data_frame.IFOPT.astype(str)
     return data_frame
 
-
-def createSQLiteFile(data_frame):
-    data_frame.to_sql("trainstops", 'sqlite:///trainstops.sqlite',if_exists='replace', index=False)
-    
     
 def init():
     csv_link = "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV"
