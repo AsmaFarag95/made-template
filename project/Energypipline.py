@@ -50,11 +50,11 @@ def pipeline():
     print("Creating SQLite files: ")
 
     print("creating CO2emissions data table ...")
-    CO2emissions.to_sql("CO2emissions", 'sqlite:///CO2emissionsRenewableEnergy.sqlite',if_exists='replace', index=False)
+    CO2emissions.to_sql("CO2emissions", 'sqlite:////data/CO2emissionsRenewableEnergy.sqlite',if_exists='replace', index=False)
    
      
     print("creating RenewableEnergy data table...")
-    RenewableEnergy.to_sql("RenewableEnergy", 'sqlite:///CO2emissionsRenewableEnergy.sqlite',if_exists='replace', index=False)
+    RenewableEnergy.to_sql("RenewableEnergy", 'sqlite:////data/CO2emissionsRenewableEnergy.sqlite',if_exists='replace', index=False)
     
     print("SQLite files created successfully!")
     
