@@ -1,0 +1,62 @@
+pipeline trainstopsDataPipeline{
+
+    //This block is an HTTP extractor that fetches data from the specified URL. In this case, it's retrieving a CSV file from the provided URL.
+    block trainstopsDataExtractor oftype HttpExtractor{	
+         // key: value
+        url: "https://download-data.deutschebahn.com/static/datasets/haltestellen/D_Bahnhof_2020_alle.CSV";
+    }	
+    //converting file to textfile
+    block trainstopsDataTextFileInterpreter oftype TextFileInterpreter{
+
+    }
+    //This block interprets the text file as a CSV file, specifying that the delimiter between fields is a semicolon (;).
+    block trainstopsDataCSVFileInterpreter oftype CSVInterpreter{
+        delimiter: ";";
+    }
+    //This block interprets the CSV data and converts it into a table format. It defines the columns of the table with their respective data types.
+    block trainstopsDataTableInterpreter oftype TableInterpreter{
+        header:true;
+        columns: [
+            "EVA_NR" oftype integer,
+            "DS100" oftype text,
+            "IFOPT" oftype text,
+            "NAME" oftype text,
+            "Verkehr"  oftype text,
+            "Laenge" oftype decimal,
+            "Breite" oftype decimal,
+            "Betreiber_Name" oftype text,
+            "Betreiber_Nr" oftype integer];}
+ 
+
+//generating sqlite file from the table
+//This block is responsible for loading the interpreted data into an SQLite database.
+// It specifies the target table name and the SQLite file to be generated.
+
+
+
+    block trainstopsDataSQLiteInterpreter oftype SQLiteLoader {
+		 table: "Jairports"; //the target table name (airports)
+         file: "Jairports.sqlite"; //the SQLite file to be generated (airports.sqlite).
+	}
+    block StatusColumnDeleter oftype ColumnDeleter {
+          delete:["Status"];
+ }
+    
+    //pipes
+    pipe {
+        from: trainstopsDataExtractor;
+        to: trainstopsDataTextFileInterpreter;
+    }
+    pipe {
+        from: trainstopsDataTextFileInterpreter;
+        to: trainstopsDataCSVFileInterpreter;
+    }
+    pipe {
+        from: trainstopsDataCSVFileInterpreter;
+        to: trainstopsDataTableInterpreter;
+    }
+     pipe {
+        from: trainstopsDataTableInterpreter;
+        to: trainstopsDataSQLiteInterpreter;
+    }
+}
