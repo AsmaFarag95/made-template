@@ -17,7 +17,8 @@ def pipeline():
     CO2emissionsUrl = "https://opendata.stadt-muenster.de/sites/default/files/Muenster-CO2-Emissionen_2021.xls" # 
     CO2emissions = pd.read_excel(CO2emissionsUrl, sheet_name=None) # to add all the three  sheets  into CO2emissions data frame,  because it loads the first one by default.
 
-#store each sheet in a data frame >>>  then creat a new CO2emissions data frame from these data frames
+
+#store each sheet in a data frame >>>  then creat a new CO2emissions data frame from these data frames:
     CO2emissions_sectors  = pd.read_excel(CO2emissionsUrl, sheet_name=0) # the first sheet (at 0) define CO2emissions by sectors
     CO2emissions_sectors =CO2emissions_sectors.rename(columns={'CO2-Emissionen nach Sektoren in (t)': 'year'} ) #rename the CO2-Emissionen nach Sektoren column into >>> year 
     #CO2emissions_sectors.index.name = 'CO2 emissions according to sector in (t)' # put the dataset topic in the first(index) column
@@ -37,13 +38,16 @@ def pipeline():
     
     
 
+
 #Cleaning data and removing missing values
+
     print("Cleaning data and removing missing values....")
     RenewableEnergy.dropna(inplace=True)
     CO2emissions.dropna(inplace=True)
 
     print("Cleaning data and removing missing values [done]....")
     
+
 #Creating SQLite files
     print("Creating SQLite files: ")
 
@@ -53,6 +57,18 @@ def pipeline():
      
     print("creating RenewableEnergy data table...")
     RenewableEnergy.to_sql("RenewableEnergy", 'sqlite://///Users/asmafaraj/Downloads/FAUWINTER/made/made-template/data/CO2emissionsRenewableEnergy.sqlite' ,if_exists='replace', index=False)
+
+#Creating SQLite files:
+ 
+    print("Creating SQLite files: ")
+
+    print("creating CO2emissions data table ...")
+    CO2emissions.to_sql("CO2emissions", 'sqlite:////data/CO2emissionsRenewableEnergy.sqlite',if_exists='replace', index=False)
+   
+     
+    print("creating RenewableEnergy data table...")
+    RenewableEnergy.to_sql("RenewableEnergy", 'sqlite:////data/CO2emissionsRenewableEnergy.sqlite',if_exists='replace', index=False)
+
     
     print("SQLite files created successfully!")
     

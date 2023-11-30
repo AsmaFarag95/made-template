@@ -40,8 +40,13 @@ pipeline airportDataPipeline{
 
 
     block airportDataSQLiteInterpreter oftype SQLiteLoader {
+<<<<<<< HEAD
 		 table: "Jairports"; //the target table name (airports)
          file: "Jairports.sqlite"; //the SQLite file to be generated (airports.sqlite).
+=======
+		 table: "airports"; //the target table name (airports)
+         file: "airports.sqlite"; //the SQLite file to be generated (airports.sqlite).
+>>>>>>> origin/main
 	}
     
     //pipes
@@ -61,4 +66,8 @@ pipeline airportDataPipeline{
         from: airportDataTableInterpreter;
         to: airportDataSQLiteInterpreter;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> origin/main
