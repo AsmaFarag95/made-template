@@ -52,11 +52,11 @@ def pipeline():
     print("Creating SQLite files: ")
 
     print("creating CO2emissions data table ...")
-    CO2emissions.to_sql("CO2emissions", 'sqlite://///Users/asmafaraj/Downloads/FAUWINTER/made/made-template/data/CO2emissionsRenewableEnergy.sqlite', if_exists='replace', index=False)
+    CO2emissions.to_sql("CO2emissions", 'sqlite://///data/CO2emissionsRenewableEnergy.sqlite', if_exists='replace', index=False)
    
      
     print("creating RenewableEnergy data table...")
-    RenewableEnergy.to_sql("RenewableEnergy", 'sqlite://///Users/asmafaraj/Downloads/FAUWINTER/made/made-template/data/CO2emissionsRenewableEnergy.sqlite' ,if_exists='replace', index=False)
+    RenewableEnergy.to_sql("RenewableEnergy", 'sqlite://///data/CO2emissionsRenewableEnergy.sqlite' ,if_exists='replace', index=False)
 
 #Creating SQLite files:
  
