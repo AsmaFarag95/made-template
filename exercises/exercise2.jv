@@ -13,6 +13,11 @@ pipeline trainstopsDataPipeline{
     block trainstopsDataCSVFileInterpreter oftype CSVInterpreter{
         delimiter: ";";
     }
+
+    	 
+    block StatusColumnDeleter oftype ColumnDeleter {
+          delete:["Status"];}
+
     //This block interprets the CSV data and converts it into a table format. It defines the columns of the table with their respective data types.
     block trainstopsDataTableInterpreter oftype TableInterpreter{
         header:true;
@@ -35,11 +40,9 @@ pipeline trainstopsDataPipeline{
 
 
     block trainstopsDataSQLiteInterpreter oftype SQLiteLoader {
-		 table: "Jairports"; //the target table name (airports)
-         file: "Jairports.sqlite"; //the SQLite file to be generated (airports.sqlite).
-	}
-    block StatusColumnDeleter oftype ColumnDeleter {
-          delete:["Status"];
+		 table: "Jytrainstops"; //the target table name (airports)
+         file: "Jytrainstops.sqlite"; //the SQLite file to be generated (airports.sqlite).
+ 
  }
     
     //pipes
@@ -59,4 +62,4 @@ pipeline trainstopsDataPipeline{
         from: trainstopsDataTableInterpreter;
         to: trainstopsDataSQLiteInterpreter;
     }
-}
+} 
