@@ -6,7 +6,7 @@
     }	
     //converting file to textfile. Pick suitable encoding
     block carsE3DataTextFileInterpreter oftype TextFileInterpreter{
-    encoding: "utf-16";
+    encoding: "utf8";
     }
     //covnerting textfile to csv
     block carsE3DataCSVFileInterpreter oftype CSVInterpreter{
