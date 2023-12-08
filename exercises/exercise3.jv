@@ -1,13 +1,12 @@
-
-pipeline carsE3DataPipeline{
+ pipeline carsE3DataPipeline{
      
     //getting the data from url
     block carsE3DataExtractor oftype HttpExtractor{	
         	url: "https://www-genesis.destatis.de/genesis/downloads/00/tables/46251-0021_00.csv";
     }	
-    //converting file to textfile
+    //converting file to textfile. Pick suitable encoding
     block carsE3DataTextFileInterpreter oftype TextFileInterpreter{
-encoding: "Windows-1252";
+    encoding: "utf8";
     }
     //covnerting textfile to csv
     block carsE3DataCSVFileInterpreter oftype CSVInterpreter{
@@ -21,7 +20,7 @@ encoding: "Windows-1252";
                  column AO, column AR, column AD, column AF, column AE, column AX, column AW, column AV, column AY, column AC, column BM, column BO,
                  column BD, column BE, column BF, column BG, column BH, column BI, column BJ, column BK, column BL, column BB, column BN, column BC,
                  column BP, column BQ, column BR, column BS, column BT];
-    }
+   } 
     //converting csv to table
     block carsE3DataTableInterpreter oftype TableInterpreter{
         header:false;
@@ -39,14 +38,14 @@ encoding: "Windows-1252";
 
 		];
     }
-    //generating sqlite file from table, enter table and filename while running the script using runtime parameters (carsE3_DATA_TABLE_FILENAME , carsE3_DATA_SQLITE_FILENAME)
-
+    //generating sqlite file from table 
     block carsE3DataSQLiteInterpreter oftype SQLiteLoader {
 		 table: "cars";
          file: "cars.sqlite";
 	}
    
     constraint maxminFive oftype RegexConstraint {
+        
   regex: /^.{5}$/;
   }
     
