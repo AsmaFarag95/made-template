@@ -1,4 +1,3 @@
-
 pipeline carsE3DataPipeline{
      
     //getting the data from url
@@ -7,7 +6,7 @@ pipeline carsE3DataPipeline{
     }	
     //converting file to textfile
     block carsE3DataTextFileInterpreter oftype TextFileInterpreter{
-encoding: "Windows-1252";
+    encoding: "utf8";
     }
     //covnerting textfile to csv
     block carsE3DataCSVFileInterpreter oftype CSVInterpreter{
@@ -21,7 +20,7 @@ encoding: "Windows-1252";
                  column AO, column AR, column AD, column AF, column AE, column AX, column AW, column AV, column AY, column AC, column BM, column BO,
                  column BD, column BE, column BF, column BG, column BH, column BI, column BJ, column BK, column BL, column BB, column BN, column BC,
                  column BP, column BQ, column BR, column BS, column BT];
-    }
+   } 
     //converting csv to table
     block carsE3DataTableInterpreter oftype TableInterpreter{
         header:false;
@@ -47,6 +46,7 @@ encoding: "Windows-1252";
 	}
    
     constraint maxminFive oftype RegexConstraint {
+        
   regex: /^.{5}$/;
   }
     
