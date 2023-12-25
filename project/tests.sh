@@ -1,6 +1,10 @@
 #!/bin/bash
-python3 project/Energypipline.py
+echo " ********* START THE TEST *******"
+echo " ********* Test Energypipline *******"
 
+python3 project/Energypipline.py
+echo " ********* Done with Energypipline  *******"
+echo " ********* START Testing libraries  *******"
    echo Python is installed.
    python3 -c "import pandas"
    if [ $? -eq "0" ]
@@ -26,29 +30,31 @@ python3 project/Energypipline.py
    else
      pip3 install openpyxl
    fi
+echo " ********* DONE Testing libraries  *******"
+
+
+echo " ********* START Testing The Dataset and Tables  *******"
 
 # Get the directory of the script
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-echo "dirname: $SCRIPT_DIR"
-echo "pwd: $pwd"
-# Construct the relative path to the SQLite database
-DB_RELATIVE_PATH="made-template/data/CO2emissionsRenewableEnergy.sqlite"
-
-# Construct the full path to the SQLite database
-DB_PATH="$SCRIPT_DIR/$DB_RELATIVE_PATH"
+# Construct the absolute path to the SQLite database in the data directory
+DB_PATH="$SCRIPT_DIR/../data/CO2emissionsRenewableEnergy.sqlite"
+# Construct the absolute path to the SQLite database in the data directory
 
 # Check if the SQLite database is created
 if [ -f "$DB_PATH" ]; then
   echo "SQLite database created successfully."
-else 
+else
   echo "SQLite database not created."
   exit 1
 fi
 
 
+ 
+
 # Check if specific tables exist in SQLite databases,  #check the path carfully
-if sqlite3  /made-template/data/CO2emissionsRenewableEnergy.sqlite  "SELECT name FROM sqlite_master WHERE type='table' AND name='CO2emissions';" | grep CO2emissions &&
-   sqlite3  /made-template/data/CO2emissionsRenewableEnergy.sqlite  "SELECT name FROM sqlite_master WHERE type='table' AND name='RenewableEnergy';" | grep RenewableEnergy; then
+if sqlite3  $DB_PATH  "SELECT name FROM sqlite_master WHERE type='table' AND name='CO2emissions';" | grep CO2emissions &&
+   sqlite3  $DB_PATH "SELECT name FROM sqlite_master WHERE type='table' AND name='RenewableEnergy';" | grep RenewableEnergy; then
   echo "Tables exist in SQLite databases."
 else
   echo "Tables not found in SQLite databases."
