@@ -42,7 +42,7 @@ pipeline trainstopsDataPipeline{
 
     block trainstopsDataSQLiteInterpreter oftype SQLiteLoader {
 		 table: "Jytrainstops"; //the target table name (airports)
-         file: "data/trainstops.sqlite"; //the SQLite file to be generated (airports.sqlite).
+         file: "trainstops.sqlite"; //the SQLite file to be generated (airports.sqlite).
  
  }
     

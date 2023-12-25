@@ -47,6 +47,6 @@ new_df = new_df.dropna()  # Drop rows with invalid values
 sqlite_types = {"date": "TEXT", "CIN": "TEXT", "name": "TEXT", **{col: "INTEGER" for col in numeric_columns}}
 
 # Step 5: Write to SQLite Database
-conn = sqlite3.connect("data/cars.sqlite")
+conn = sqlite3.connect("cars.sqlite")
 new_df.to_sql("cars", conn, if_exists="replace", index=False, dtype=sqlite_types)
 conn.close()
