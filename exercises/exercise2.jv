@@ -16,7 +16,8 @@ pipeline trainstopsDataPipeline{
 
     	 
     block StatusColumnDeleter oftype ColumnDeleter {
-          delete:["Status"];}
+          delete:["Status"];
+          }
 
     //This block interprets the CSV data and converts it into a table format. It defines the columns of the table with their respective data types.
     block trainstopsDataTableInterpreter oftype TableInterpreter{
