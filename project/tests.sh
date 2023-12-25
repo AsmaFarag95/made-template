@@ -32,7 +32,8 @@ echo " ********* START Testing libraries  *******"
    fi
 echo " ********* DONE Testing libraries  *******"
 
-
+#commented block, so this part will not be excuted, because I will not upload the datasets on github
+<<'EOF' 
 echo " ********* START Testing The Dataset and Tables  *******"
 
 # Get the directory of the script
@@ -60,8 +61,8 @@ else
   echo "Tables not found in SQLite databases."
   exit 1
 fi
-
-
+EOF
+# End of  he commented block 
 
 # Return an appropriate exit status
 # 0 means success, non-zero means failure
