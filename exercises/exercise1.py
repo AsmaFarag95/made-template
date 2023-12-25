@@ -16,7 +16,7 @@ for column in df.columns:
         sqlite_data_types[column] = Text()
 
 # Create SQLite database engine
-engine = create_engine("sqlite:///airports.sqlite")
+engine = create_engine("sqlite:///data/airports.sqlite")
 print("done")
 # Create the SQLite table, the content of the DataFrame df is written  into a table named "airports" in the SQLite database
 #using the specified SQLite data types (sqlite_data_types).

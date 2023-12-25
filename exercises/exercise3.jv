@@ -42,7 +42,7 @@ pipeline carsE3DataPipeline{
 
     block carsE3DataSQLiteInterpreter oftype SQLiteLoader {
 		 table: "cars";
-         file: "cars.sqlite";
+         file: "data/jvcars.sqlite";
 	}
    
     constraint maxminFive oftype RegexConstraint {

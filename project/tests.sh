@@ -27,14 +27,24 @@ python3 project/Energypipline.py
      pip3 install openpyxl
    fi
 
- # Check if the SQLite database is created
-   if [ -f /made-template/data/CO2emissionsRenewableEnergy.sqlite  ]; then #check the path carfully
-     echo "SQLite database created successfully."
-   else
-     echo "SQLite database not created."
+# Get the directory of the script
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+echo "dirname: $SCRIPT_DIR"
+echo "pwd: $pwd"
+# Construct the relative path to the SQLite database
+DB_RELATIVE_PATH="made-template/data/CO2emissionsRenewableEnergy.sqlite"
+
+# Construct the full path to the SQLite database
+DB_PATH="$SCRIPT_DIR/$DB_RELATIVE_PATH"
+
+# Check if the SQLite database is created
+if [ -f "$DB_PATH" ]; then
+  echo "SQLite database created successfully."
+else 
+  echo "SQLite database not created."
   exit 1
-     fi
- 
+fi
+
 
 # Check if specific tables exist in SQLite databases,  #check the path carfully
 if sqlite3  /made-template/data/CO2emissionsRenewableEnergy.sqlite  "SELECT name FROM sqlite_master WHERE type='table' AND name='CO2emissions';" | grep CO2emissions &&

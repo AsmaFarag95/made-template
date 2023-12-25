@@ -42,7 +42,7 @@ pipeline airportDataPipeline{
     block airportDataSQLiteInterpreter oftype SQLiteLoader {
  
 		 table: "Jvairports"; //the target table name (airports)
-         file: "Jvairports.sqlite"; //the SQLite file to be generated (airports.sqlite).
+         file: "data/Jvairports.sqlite"; //the SQLite file to be generated (airports.sqlite).
  	}
     
     //pipes

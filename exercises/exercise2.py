@@ -20,7 +20,7 @@ def getDataFromLink(link):
 
 
 def createSQLiteFile(df):
-    df.to_sql("trainstops", 'sqlite:///trainstops.sqlite',if_exists='replace', index=False)
+    df.to_sql("trainstops", 'sqlite:///data/trainstops.sqlite',if_exists='replace', index=False)
     
     
 def changeDataType(df,types):
