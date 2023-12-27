@@ -34,7 +34,8 @@ new_df = df[['date', 'CIN', 'name', 'petrol', 'diesel', 'gas', 'electro', 'hybri
 
  
 # Validate CINs
-new_df["CIN"] = new_df["CIN"].astype(str).str.zfill(5)
+new_df["CIN"] = new_df["CIN"].astype(str).str.zfill(5) #zfill() returns a copy of the string with 0 filled to the left. 
+                                                       #The length of the returned string depends on the width provided, 5 here.
 
 
 # Validate numeric columns
