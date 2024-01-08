@@ -4,18 +4,18 @@
 This [Report](https://github.com/AsmaFarag95/made-template/blob/main/project/report.ipynb) explores the relationship between renewable energy production and CO2 emissions using data engineering and time series analysis. By transforming, analyzing, and applying ARIMA models to the data, valuable insights into the trends and patterns observed are obtained.
 
 
-The analysis leverages publicly available datasets from openopendata.stadt-muenster.de and employs the Python programming language. The central question addressed is, "How can Münster enhance its sustainable urban development strategies, focusing on reducing CO2 emissions and reinforcing renewable energy production?"
+The analysis leverages publicly available datasets from opendata.stadt-muenster.de and employs the Python programming language. The central question addressed is, "How can Münster enhance its sustainable urban development strategies, focusing on reducing CO2 emissions and reinforcing renewable energy production?"
 
 
 ## Project Work
 
 Clean, format, and prepare datasets, addressing missing values and ensuring data consistency.
-Then, develop a data integration plan to combine datasets on renewable energy production and CO2 emissions in Münster.
+Then, develop a data integration plan to combine datasets.
  
 After that gain insights into datasets to understand trends, patterns and relationships between renewable energy production and CO2 emissions. 
  
 
-An inportant aspect is to implement the Autoregressive Integrated Moving Average (ARIMA) model for time series forecasting and evaluate its performance.
+An important aspect is to implement the Autoregressive Integrated Moving Average (ARIMA) model for time series forecasting and explore its attributes.
  
 ## Contribution Guidelines:
 
