@@ -44,7 +44,7 @@ This dataset contains the data on the production of electricity and heat through
 
 3. Exploring:  Gain insights into the datasets to understand trends and patterns. Examine the relationships between renewable energy production dataset and CO2 emissions development. [i3]
 
-4. Analysis: Using Machine Learnin, Time-series analysis and other analysis techniques for in-depth insights. [i4]
+4. Analysis: Using analysis techniques for in-depth insights. [i4]
    
 5. Generate insights: Provide recommendations for policymakers and energy planners based on the analysis. [i5]
 
