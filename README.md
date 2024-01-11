@@ -2,11 +2,14 @@
 
 
 
-This [Report](https://github.com/AsmaFarag95/made-template/blob/main/project/report.ipynb) explores the relationship between renewable energy production and CO2 emissions using data engineering techniques. By transforming, analyzing and visualizing the data, valuable insights into the trends and patterns are obtained.
+This project explores the relationship between renewable energy production and CO2 emissions using data engineering techniques. By transforming, analyzing and visualizing the data, valuable insights into the trends and patterns are obtained. 
 
 
 The analysis leverages publicly available datasets from opendata.stadt-muenster.de and employs the Python programming language. The central question addressed is, "How can Münster enhance its sustainable urban development strategies, focusing on reducing CO2 emissions and reinforcing renewable energy production?"
 
+For more details:
+[Report](https://github.com/AsmaFarag95/made-template/blob/main/project/report.ipynb)
+[Presentation](https://github.com/AsmaFarag95/made-template/blob/main/project/slides.pdf)
 
 ## Project Work
 
