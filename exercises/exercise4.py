@@ -22,8 +22,17 @@ def get_zip_file_from_link(url):
     return csv_file
  
 def get_data_from_file(file_cv):
+
+# Only use the columns "Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Batterietemperatur in °C", "Geraet aktiv"
+# Rename "Temperatur in °C (DWD)" to "Temperatur"
+# Rename "Batterietemperatur in °C" to "Batterietemperatur"
+
     df = pd.read_csv(file_cv, delimiter=';', index_col=False, usecols=["Geraet", "Hersteller", "Model", "Monat", "Temperatur in °C (DWD)", "Batterietemperatur in °C", "Geraet aktiv"])
     df.columns =["Geraet", "Hersteller", "Model", "Monat", "Temperatur", "Batterietemperatur", "Geraet aktiv"]
+    
+# Discard all columns to the right of "Geraet aktiv"
+    df = df.loc[:, :"Geraet aktiv"]
+    
     return df
     
 
@@ -37,12 +46,13 @@ def fitting_data_types(df,types):
 
       
 def validations_as(data):
-    
+    # Transform temperatures in Celsius to Fahrenheit
+
     data["Temperatur"] = (data["Temperatur"].astype(str).str.replace(',', '.').astype(float)*9/5)+32
     data["Batterietemperatur"] = (data["Batterietemperatur"].astype(str).str.replace(',', '.').astype(float)*9/5)+32
     data["Monat"] = data["Monat"].astype(int)
     data["Geraet"] = data["Geraet"].astype(int)
-    data = data[(data['Geraet'] > 0) & (data['Monat'].between(1, 12))& (data["Temperatur"].between(-459.67, 212))& (data["Batterietemperatur"].between(-459.67, 212)) & (data["Geraet aktiv"].isin(["Ja", "Nein"]))]
+    data = data[(data['Geraet'] > 0) & (data['Monat'].between(1, 12, inclusive='both'))& (data["Temperatur"].between(-459.67, 212))& (data["Batterietemperatur"].between(-459.67, 212)) & (data["Geraet aktiv"].isin(["Ja", "Nein"]))]
     return data
 
 
