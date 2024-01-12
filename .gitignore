@@ -4,3 +4,7 @@
 !/data/.gitkeep
 .vscode
 *.sqlite
+mowesta-dataset.zip
+temperatures.sqlite
+file_cv
+csv_file

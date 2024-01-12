@@ -39,10 +39,11 @@ df.columns =["Geraet", "Hersteller", "Model", "Monat", "Temperatur", "Batteriete
 df["Temperatur"] = (df["Temperatur"].astype(str).str.replace(',', '.').astype(float)*9/5)+32
 df["Batterietemperatur"] = (df["Batterietemperatur"].astype(str).str.replace(',', '.').astype(float)*9/5)+32
 
+df["Temperatur"] = df["Batterietemperatur"] *(9/5)+32
+df["Batterietemperatur"] = df["Batterietemperatur"]  *(9/5)+32
 
 
-
-df["Monat"] = df["Monat"].astype(int).between(1, 12)
+df["Monat"] = df["Monat"].astype(int).between(1, 12 , inclusive='both')
 df["Geraet"] = df["Geraet"].astype(int)
 data = df[(df['Geraet'] > 0)]   
     
