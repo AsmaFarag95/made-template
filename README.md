@@ -9,7 +9,8 @@ The analysis leverages publicly available datasets from opendata.stadt-muenster.
 
 For more details:
 [Report](https://github.com/AsmaFarag95/made-template/blob/main/project/report.ipynb)
-and [Presentation](https://github.com/AsmaFarag95/made-template/blob/main/project/slides.pdf)
+and [Presentation](https://github.com/AsmaFarag95/made-template/blob/main/project/slides.pdf)  
+Also, have a look at my [video-presentation] (https://github.com/AsmaFarag95/made-template/blob/main/project/presentation-video.mp4) 
 
 ## Project Work
 
